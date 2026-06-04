@@ -215,19 +215,6 @@ For production, use:
 
 See [`DEPLOYMENT.md`](DEPLOYMENT.md) and [`docs/GIT_REPO_GUIDE.md`](docs/GIT_REPO_GUIDE.md).
 
-## Security and Privacy
-
-Do not commit:
-
-- `.env`
-- bot tokens
-- Gemini API keys
-- SQLite database files
-- real Telegram chat IDs
-- real Telegram user IDs
-- screenshots with visible private names
-
-The demo screenshots in this repository are anonymized.
 
 ## Repository Status
 
