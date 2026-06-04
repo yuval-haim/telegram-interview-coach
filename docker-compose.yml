@@ -1,0 +1,31 @@
+services:
+  interview-bot:
+    build: .
+    container_name: telegram-interview-bot
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+    ports:
+      - "127.0.0.1:8000:8000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    labels:
+      - autoheal=true
+    mem_limit: 350m
+    mem_reservation: 200m
+
+  autoheal:
+    image: willfarrell/autoheal:latest
+    container_name: autoheal
+    restart: unless-stopped
+    environment:
+      - AUTOHEAL_CONTAINER_LABEL=autoheal
+      - AUTOHEAL_INTERVAL=30
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
